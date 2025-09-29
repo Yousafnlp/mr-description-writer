@@ -21,7 +21,7 @@ export default function MrForm() {
   const [cardDescription, setCardDescription] = useState("");
   const [extraInfo, setExtraInfo] = useState("");
   const [output, setOutput] = useState("");
-  const [branch, setBranch] = useState("");
+  const [branch, setBranch] = useState("dev");
   const [baseBranch, setBaseBranch] = useState("");
   const [gitlabPreview, setGitlabPreview] = useState(null);
 
@@ -97,13 +97,13 @@ export default function MrForm() {
         <div className="grid gap-2 md:grid-cols-2">
           <Input
             id="base-branch"
-            placeholder="Optional base branch (defaults to project's default)"
+            placeholder="feature/my-branch"
             value={baseBranch}
             onChange={(e) => setBaseBranch(e.target.value)}
           />
           <Input
             id="branch"
-            placeholder="feature/my-branch"
+            placeholder="base branch"
             value={branch}
             onChange={(e) => setBranch(e.target.value)}
           />
