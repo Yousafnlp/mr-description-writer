@@ -43,9 +43,9 @@ export default function MrForm() {
         branch: branch.trim(),
         baseBranch: baseBranch.trim() || undefined,
       });
-      // console.log({ res });
-      const commits = res.commits.changes?.commits?.length;
-      const changedFiles = res.changedFiles?.length;
+      console.log({ res });
+      const commits = res?.changes?.commits?.length;
+      const changedFiles = res?.changedFiles?.length;
       setGitlabPreview({
         branch: res.branch,
         baseBranch: res.baseBranch,
@@ -86,9 +86,7 @@ export default function MrForm() {
           </SelectTrigger>
           <SelectContent>
             <SelectItem value="Feature">Feature</SelectItem>
-            <SelectItem value="Refactor">Refactor</SelectItem>
             <SelectItem value="Bugfix">Bugfix</SelectItem>
-            <SelectItem value="Enhancement">Enhancement</SelectItem>
           </SelectContent>
         </Select>
       </div>
@@ -98,16 +96,16 @@ export default function MrForm() {
         <Label htmlFor="branch">GitLab Branch</Label>
         <div className="grid gap-2 md:grid-cols-2">
           <Input
-            id="branch"
-            placeholder="feature/my-branch"
-            value={branch}
-            onChange={(e) => setBranch(e.target.value)}
-          />
-          <Input
             id="base-branch"
             placeholder="Optional base branch (defaults to project's default)"
             value={baseBranch}
             onChange={(e) => setBaseBranch(e.target.value)}
+          />
+          <Input
+            id="branch"
+            placeholder="feature/my-branch"
+            value={branch}
+            onChange={(e) => setBranch(e.target.value)}
           />
         </div>
         <div className="flex items-center gap-2">
@@ -122,10 +120,10 @@ export default function MrForm() {
         </div>
         {gitlabPreview && (
           <div className="rounded-md border p-3">
-            <p className="text-sm font-medium">{`Comparing ${gitlabPreview.branch} ← ${gitlabPreview.baseBranch}`}</p>
+            <p className="text-sm font-medium">{`Comparing  ${gitlabPreview.baseBranch} ->  ${gitlabPreview.branch} ←`}</p>
             <p className="text-xs text-muted-foreground mt-1">
-              {gitlabPreview.commits.length} commits •{" "}
-              {gitlabPreview.changedFiles.length} changed files
+              {gitlabPreview.commits} commits • {gitlabPreview.changedFiles}{" "}
+              changed files
             </p>
           </div>
         )}
