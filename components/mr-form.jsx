@@ -12,7 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { postJSON } from "@/lib/utils";
+import { postJSON, summarizeGitlab } from "@/lib/utils";
 
 // helper
 
@@ -43,7 +43,6 @@ export default function MrForm() {
         branch: branch.trim(),
         baseBranch: baseBranch.trim() || undefined,
       });
-      console.log({ res });
       const commits = res?.changes?.commits?.length;
       const changedFiles = res?.changedFiles?.length;
       setGitlabPreview({
@@ -120,7 +119,7 @@ export default function MrForm() {
         </div>
         {gitlabPreview && (
           <div className="rounded-md border p-3">
-            <p className="text-sm font-medium">{`Comparing  ${gitlabPreview.baseBranch} ->  ${gitlabPreview.branch} ←`}</p>
+            <p className="text-sm font-medium">{`Comparing  ${gitlabPreview.baseBranch} ->  ${gitlabPreview.branch}`}</p>
             <p className="text-xs text-muted-foreground mt-1">
               {gitlabPreview.commits} commits • {gitlabPreview.changedFiles}{" "}
               changed files
