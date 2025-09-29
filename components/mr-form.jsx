@@ -44,7 +44,7 @@ export default function MrForm() {
         baseBranch: baseBranch.trim() || undefined,
       });
       const commits = res?.changes?.commits?.length;
-      const changedFiles = res?.changedFiles?.length;
+      const changedFiles = res?.changedFiles;
       setGitlabPreview({
         branch: res.branch,
         baseBranch: res.baseBranch,
@@ -121,8 +121,8 @@ export default function MrForm() {
           <div className="rounded-md border p-3">
             <p className="text-sm font-medium">{`Comparing  ${gitlabPreview.baseBranch} ->  ${gitlabPreview.branch}`}</p>
             <p className="text-xs text-muted-foreground mt-1">
-              {gitlabPreview.commits} commits • {gitlabPreview.changedFiles}{" "}
-              changed files
+              {gitlabPreview.commits} commits •{" "}
+              {gitlabPreview.changedFiles?.length} changed files
             </p>
           </div>
         )}
