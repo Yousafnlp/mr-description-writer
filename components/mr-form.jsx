@@ -161,7 +161,7 @@ export default function MrForm() {
         <Button
           type="button"
           onClick={handleGenerate}
-          disabled={isGenerating || !cardDescription.trim()}
+          disabled={isGenerating || !cardDescription.trim() || !gitlabPreview}
         >
           {isGenerating ? "Generating..." : "Generate Description"}
         </Button>
