@@ -112,7 +112,7 @@ export default function MrForm() {
             type="button"
             variant="secondary"
             onClick={handleFetchChanges}
-            disabled={isFetchingCompare || !branch.trim()}
+            disabled={isFetchingCompare || !branch.trim() || !baseBranch.trim()}
           >
             {isFetchingCompare ? "Fetching changes..." : "Fetch Changes"}
           </Button>
